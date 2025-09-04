@@ -1,5 +1,10 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
+from flask import render_template
+
+@app.route("/shop")
+def shop():
+    return render_template("index.html")
 
 app = Flask(__name__)
 CORS(app)  # Frontend başka bir domainden çağırabilsin diye
