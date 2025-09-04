@@ -2,71 +2,42 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Mini E-Ticaret</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .product { border: 1px solid #ccc; padding: 10px; margin: 10px; display: inline-block; }
-        button { margin-top: 5px; }
-    </style>
+    <title>Hitit Cups</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Ürünler</h1>
-    <div id="products"></div>
+    <!-- Hero Banner -->
+    <section class="hero" data-aos="fade-up">
+        <h1>Hitit Cups</h1>
+        <p>Özel tasarım karton bardaklar</p>
+        <a href="https://wa.me/905xxxxxxxxx?text=Merhaba,%20ürünlerle%20ilgileniyorum" class="whatsapp-btn">WhatsApp ile Sipariş Ver</a>
+    </section>
 
-    <h2>Sepet</h2>
-    <ul id="cart"></ul>
+    <!-- Ürün Koleksiyonu -->
+    <section class="products">
+        <h2>Ürünlerimiz</h2>
+        <div class="product-card" data-aos="zoom-in">
+            <img src="https://via.placeholder.com/150" alt="4 oz Bardak">
+            <h3>4 oz Karton Bardak</h3>
+            <a href="https://wa.me/905xxxxxxxxx?text=Merhaba,%204 oz Bardak ile ilgileniyorum" class="whatsapp-btn">Sipariş Ver</a>
+        </div>
+        <div class="product-card" data-aos="zoom-in" data-aos-delay="100">
+            <img src="https://via.placeholder.com/150" alt="6.5 oz Bardak">
+            <h3>6.5 oz Karton Bardak</h3>
+            <a href="https://wa.me/905xxxxxxxxx?text=Merhaba,%206.5 oz Bardak ile ilgileniyorum" class="whatsapp-btn">Sipariş Ver</a>
+        </div>
+        <div class="product-card" data-aos="zoom-in" data-aos-delay="200">
+            <img src="https://via.placeholder.com/150" alt="7 oz Bardak">
+            <h3>7 oz Karton Bardak</h3>
+            <a href="https://wa.me/905xxxxxxxxx?text=Merhaba,%207 oz Bardak ile ilgileniyorum" class="whatsapp-btn">Sipariş Ver</a>
+        </div>
+    </section>
 
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script>
-        const productsDiv = document.getElementById("products");
-        const cartUl = document.getElementById("cart");
-
-        // Ürünleri çek
-        fetch("/api/products")
-        .then(res => res.json())
-        .then(products => {
-            products.forEach(p => {
-                const div = document.createElement("div");
-                div.className = "product";
-                div.innerHTML = `<strong>${p.name}</strong><br>Fiyat: ${p.price} TL`;
-                
-                const btn = document.createElement("button");
-                btn.textContent = "Sepete Ekle";
-                btn.onclick = () => addToCart(p.id);
-                
-                div.appendChild(btn);
-                productsDiv.appendChild(div);
-            });
-        });
-
-        // Sepete ekle
-        function addToCart(id) {
-            fetch("/api/cart", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ id: id, quantity: 1 })
-            })
-            .then(res => res.json())
-            .then(data => {
-                alert(data.message);
-                loadCart();
-            });
-        }
-
-        // Sepeti yükle
-        function loadCart() {
-            fetch("/api/cart")
-            .then(res => res.json())
-            .then(cart => {
-                cartUl.innerHTML = "";
-                cart.forEach(item => {
-                    const li = document.createElement("li");
-                    li.textContent = `Ürün ID: ${item.id}, Adet: ${item.quantity}`;
-                    cartUl.appendChild(li);
-                });
-            });
-        }
-
-        loadCart();
+        AOS.init();
     </script>
 </body>
 </html>
