@@ -1,42 +1,59 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta charset="UTF-8">
-<title>HİTİT CUPS</title>
 <style>
 body { font-family: Arial; background:#e0f5e9; margin:0; text-align:center; }
 header { background:aquamarine; padding:40px; color:#fff; }
 header h1 { margin:0; font-size:3rem; font-weight:bold; }
 header p { margin:10px 0 0; font-size:1.3rem; font-style:italic; }
-.gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; padding:20px; max-width:1000px; margin:0 auto; }
-.item { background:#fff; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1); padding:15px; transition:transform 0.3s, box-shadow 0.3s; }
-.item:hover { transform:translateY(-8px) scale(1.05); box-shadow:0 8px 20px rgba(0,0,0,0.2); }
-.item img { width:100%; border-radius:12px; }
-.item p { margin:10px 0 5px; font-size:1.1rem; font-weight:bold; color:#444; }
-.item a { display:inline-block; text-decoration:none; background:#25D366; color:#fff; padding:8px 12px; border-radius:8px; font-weight:bold; transition:0.3s; }
-.item a:hover { background:#1ebe5d; }
+.gallery {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    padding:20px;
+    max-width:1000px;
+    margin:0 auto;
+}
+.item {
+    background:#fff;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    padding:15px;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                background 0.5s;
+    cursor:pointer;
+}
+.item:hover {
+    transform: translateY(-10px) scale(1.08) rotate(-1deg);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+    background: #f0fff4; /* hafif yeşil tonuna geçiş */
+}
+.item img {
+    width:100%;
+    border-radius:12px;
+    transition: transform 0.5s;
+}
+.item:hover img {
+    transform: scale(1.05) rotate(-1deg);
+}
+.item p {
+    margin:10px 0 5px;
+    font-size:1.1rem;
+    font-weight:bold;
+    color:#444;
+}
+.item a {
+    display:inline-block;
+    text-decoration:none;
+    background:#25D366;
+    color:#fff;
+    padding:8px 12px;
+    border-radius:8px;
+    font-weight:bold;
+    transition:0.3s;
+}
+.item a:hover {
+    background:#1ebe5d;
+    transform: scale(1.1);
+}
 nav { margin:20px 0; }
 nav a { margin:0 15px; color:#333; text-decoration:none; font-weight:bold; }
 </style>
-</head>
-<body>
-<header>
-<h1>HİTİT CUPS</h1>
-<p>Kaliteyi hisset , Markanı göster</p>
-</header>
-
-<nav>
-<a href="/shop">Mağaza</a> | <a href="/contact">İletişim</a>
-</nav>
-
-<div class="gallery">
-{% for product in products %}
-<div class="item">
-<img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
-<p>{{ product.name }} - {{ product.price }} TL</p>
-<a href="https://wa.me/905524981750?text=Merhaba,%20{{ product.name }}%20sipariş%20vermek%20istiyorum" target="_blank">WhatsApp</a>
-</div>
-{% endfor %}
-</div>
-</body>
-</html>
