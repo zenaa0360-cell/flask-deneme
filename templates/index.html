@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>HİTİT CUPS</title>
+
 <style>
 body { font-family: Arial; background:#e0f5e9; margin:0; text-align:center; }
 header { background:aquamarine; padding:40px; color:#fff; }
@@ -17,8 +23,6 @@ header p { margin:10px 0 0; font-size:1.3rem; font-style:italic; }
     box-shadow:0 4px 10px rgba(0,0,0,0.1);
     padding:15px;
     cursor:pointer;
-
-    /* Animasyon efektleri */
     transform: translateY(0);
     transition: transform 0.5s cubic-bezier(0.4,0,0.2,1),
                 box-shadow 0.5s cubic-bezier(0.4,0,0.2,1),
@@ -35,7 +39,7 @@ header p { margin:10px 0 0; font-size:1.3rem; font-style:italic; }
 .item:hover {
     transform: translateY(-10px) scale(1.08) rotate(-1deg);
     box-shadow: 0 12px 25px rgba(0,0,0,0.25);
-    background: #b2f2bb; /* daha canlı yeşil ton */
+    background: #b2f2bb; /* canlı yeşil ton */
 }
 .item img {
     width:100%;
@@ -54,9 +58,32 @@ header p { margin:10px 0 0; font-size:1.3rem; font-style:italic; }
 nav { margin:20px 0; }
 nav a { margin:0 15px; color:#333; text-decoration:none; font-weight:bold; }
 
-/* Fade-in animasyonu */
 @keyframes fadeIn {
     from { opacity:0; transform: translateY(20px); }
     to { opacity:1; transform: translateY(0); }
 }
 </style>
+
+</head>
+<body>
+<header>
+<h1>HİTİT CUPS</h1>
+<p>Kaliteyi hisset , Markanı göster</p>
+</header>
+
+<nav>
+<a href="/shop">Mağaza</a> | <a href="/contact">İletişim</a>
+</nav>
+
+<div class="gallery">
+{% for product in products %}
+<div class="item">
+<img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
+<p>{{ product.name }} - {{ product.price }} TL</p>
+<a href="https://wa.me/905524981750?text=Merhaba,%20{{ product.name }}%20sipariş%20vermek%20istiyorum" target="_blank">WhatsApp</a>
+</div>
+{% endfor %}
+</div>
+
+</body>
+</html>
