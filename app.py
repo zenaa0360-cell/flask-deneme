@@ -13,13 +13,15 @@ def home():
 # HTML arayüz
 @app.route("/shop")
 def shop():
-    return render_template("index.html")
+    return render_template("index.html", products=products)
+
 
 # Basit ürün listesi
 products = [
-    {"id": 1, "name": "4 oz Karton Bardak", "price": 700},
-    {"id": 2, "name": "6.5 oz Karton Bardak", "price": 800},
-    {"id": 3, "name": "7 oz Karton Bardak", "price": 900}
+    {"id": 1, "name": "4 oz Karton Bardak", "price": 700, "image": "images/bardak1.jpg"},
+    {"id": 2, "name": "6.5 oz Karton Bardak", "price": 800, "image": "images/bardak2.jpg"},
+    {"id": 3, "name": "7 oz Karton Bardak", "price": 900, "image": "images/bardak3.jpg"},
+    {"id": 4, "name": "Özel Baskı Bardak", "price": 2000, "image": "images/bardak4.jpg"}
 ]
 
 @app.route("/api/products")

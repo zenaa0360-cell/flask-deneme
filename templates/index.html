@@ -2,42 +2,74 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Hitit Cups</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
+    <title>HİTİT CUPS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #e0f5e9; /* açık yeşil */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background: aquamarine; /* su yeşili */
+            padding: 40px 20px;
+            color: #fff;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.3rem;
+            font-style: italic;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .item {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .item:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .item img {
+            width: 100%;
+            border-radius: 12px;
+        }
+        .item p {
+            margin: 10px 0 0;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #444;
+        }
+    </style>
 </head>
 <body>
-    <!-- Hero Banner -->
-    <section class="hero" data-aos="fade-up">
-        <h1>Hitit Cups</h1>
-        <p>Özel tasarım karton bardaklar</p>
-        <a href="https://wa.me/905xxxxxxxxx?text=Merhaba,%20ürünlerle%20ilgileniyorum" class="whatsapp-btn">WhatsApp ile Sipariş Ver</a>
-    </section>
+    <header>
+        <h1>HİTİT CUPS</h1>
+        <p>Kaliteyi hisset , Markanı göster</p>
+    </header>
 
-    <!-- Ürün Koleksiyonu -->
-    <section class="products">
-        <h2>Ürünlerimiz</h2>
-        <div class="product-card" data-aos="zoom-in">
-            <img src="https://via.placeholder.com/150" alt="4 oz Bardak">
-            <h3>4 oz Karton Bardak</h3>
-            <a href="https://wa.me/905xxxxxxxxx?text=Merhaba,%204 oz Bardak ile ilgileniyorum" class="whatsapp-btn">Sipariş Ver</a>
+    <div class="gallery">
+        {% for product in products %}
+        <div class="item">
+            <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
+            <p>{{ product.name }} - {{ product.price }} TL</p>
         </div>
-        <div class="product-card" data-aos="zoom-in" data-aos-delay="100">
-            <img src="https://via.placeholder.com/150" alt="6.5 oz Bardak">
-            <h3>6.5 oz Karton Bardak</h3>
-            <a href="https://wa.me/905xxxxxxxxx?text=Merhaba,%206.5 oz Bardak ile ilgileniyorum" class="whatsapp-btn">Sipariş Ver</a>
-        </div>
-        <div class="product-card" data-aos="zoom-in" data-aos-delay="200">
-            <img src="https://via.placeholder.com/150" alt="7 oz Bardak">
-            <h3>7 oz Karton Bardak</h3>
-            <a href="https://wa.me/905xxxxxxxxx?text=Merhaba,%207 oz Bardak ile ilgileniyorum" class="whatsapp-btn">Sipariş Ver</a>
-        </div>
-    </section>
-
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <script>
-        AOS.init();
-    </script>
+        {% endfor %}
+    </div>
 </body>
 </html>
