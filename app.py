@@ -28,6 +28,7 @@ def contact():
 
 
 
+
 # Sepet sistemi
 @app.route("/api/cart", methods=["GET","POST"])
 def cart():
