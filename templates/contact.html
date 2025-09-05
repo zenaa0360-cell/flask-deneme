@@ -26,18 +26,28 @@ nav a:hover {
     color:#000;
 }
 
+.contact-container {
+    display:grid;
+    grid-template-columns:1fr;
+    gap:20px;
+    padding:20px;
+    max-width:800px;
+    margin:0 auto;
+}
+
 .contact-card {
     background:#fff;
     border-radius:12px;
     box-shadow:0 4px 10px rgba(0,0,0,0.1);
     padding:20px;
-    margin:20px auto;
-    width:90%;
-    max-width:500px;
     transition: transform 0.5s, box-shadow 0.5s;
     opacity:0;
     animation: fadeIn 1s forwards;
 }
+.contact-card:nth-child(1) { animation-delay: 0.1s; }
+.contact-card:nth-child(2) { animation-delay: 0.3s; }
+.contact-card:nth-child(3) { animation-delay: 0.5s; }
+
 .contact-card:hover {
     transform: translateY(-5px) scale(1.03);
     box-shadow:0 12px 25px rgba(0,0,0,0.2);
@@ -45,6 +55,22 @@ nav a:hover {
 
 .contact-card h2 { margin-bottom:10px; color:#333; }
 .contact-card p { margin:5px 0; color:#555; }
+
+.contact-map {
+    width:100%;
+    max-width:600px;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    opacity:0;
+    animation: fadeIn 1s forwards;
+    animation-delay:0.7s;
+}
+
+.contact-map img {
+    width:100%;
+    display:block;
+}
 
 @keyframes fadeIn {
     from { opacity:0; transform: translateY(20px); }
@@ -56,20 +82,28 @@ nav a:hover {
 <body>
 <header>
 <h1>HİTİT CUPS</h1>
-<p>İletişim</p>
+<p>Bizimle iletişime geçin</p>
 </header>
 
 <nav>
 <a href="/shop">Mağaza</a> | <a href="/contact">İletişim</a>
 </nav>
 
-<div class="contact-card">
-<h2>Adres</h2>
-<p>Örnek Mahallesi, İstanbul, Türkiye</p>
-<h2>Telefon</h2>
-<p>+90 5524981750</p>
-<h2>Email</h2>
-<p>info@hititcups.com</p>
+<div class="contact-container">
+    <div class="contact-card">
+        <h2>Adres</h2>
+        <p>Örnek Mahallesi, İstanbul, Türkiye</p>
+    </div>
+
+    <div class="contact-card">
+        <h2>Telefon & Email</h2>
+        <p>+90 552 498 17 50</p>
+        <p>info@hititcups.com</p>
+    </div>
+
+    <div class="contact-map">
+        <img src="{{ url_for('static', filename='images/map.png') }}" alt="Harita Konumu">
+    </div>
 </div>
 
 </body>
