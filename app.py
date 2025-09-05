@@ -25,6 +25,7 @@ def shop():
 def contact():
     return render_template("contact.html")
 
+
 # Sepet sistemi
 @app.route("/api/cart", methods=["GET","POST"])
 def cart():
