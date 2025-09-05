@@ -16,15 +16,26 @@ header p { margin:10px 0 0; font-size:1.3rem; font-style:italic; }
     border-radius:12px;
     box-shadow:0 4px 10px rgba(0,0,0,0.1);
     padding:15px;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                background 0.5s;
     cursor:pointer;
+
+    /* Animasyon efektleri */
+    transform: translateY(0);
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1),
+                box-shadow 0.5s cubic-bezier(0.4,0,0.2,1),
+                background 0.5s,
+                opacity 0.5s;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
 }
+.item:nth-child(1) { animation-delay: 0.1s; }
+.item:nth-child(2) { animation-delay: 0.3s; }
+.item:nth-child(3) { animation-delay: 0.5s; }
+.item:nth-child(4) { animation-delay: 0.7s; }
+
 .item:hover {
     transform: translateY(-10px) scale(1.08) rotate(-1deg);
     box-shadow: 0 12px 25px rgba(0,0,0,0.25);
-    background: #f0fff4; /* hafif yeşil tonuna geçiş */
+    background: #b2f2bb; /* daha canlı yeşil ton */
 }
 .item img {
     width:100%;
@@ -34,26 +45,18 @@ header p { margin:10px 0 0; font-size:1.3rem; font-style:italic; }
 .item:hover img {
     transform: scale(1.05) rotate(-1deg);
 }
-.item p {
-    margin:10px 0 5px;
-    font-size:1.1rem;
-    font-weight:bold;
-    color:#444;
-}
+.item p { margin:10px 0 5px; font-size:1.1rem; font-weight:bold; color:#444; }
 .item a {
-    display:inline-block;
-    text-decoration:none;
-    background:#25D366;
-    color:#fff;
-    padding:8px 12px;
-    border-radius:8px;
-    font-weight:bold;
-    transition:0.3s;
+    display:inline-block; text-decoration:none; background:#25D366; color:#fff; padding:8px 12px; border-radius:8px; font-weight:bold; transition:0.3s;
 }
-.item a:hover {
-    background:#1ebe5d;
-    transform: scale(1.1);
-}
+.item a:hover { background:#1ebe5d; transform: scale(1.1); }
+
 nav { margin:20px 0; }
 nav a { margin:0 15px; color:#333; text-decoration:none; font-weight:bold; }
+
+/* Fade-in animasyonu */
+@keyframes fadeIn {
+    from { opacity:0; transform: translateY(20px); }
+    to { opacity:1; transform: translateY(0); }
+}
 </style>
