@@ -76,10 +76,17 @@
       box-shadow: 0 12px 30px rgba(0,0,0,0.2);
     }
 
+    /* FOTO HOVER ANIMASYONU */
     .product-card img {
       max-width: 100%;
       border-radius: 12px;
       margin-bottom: 15px;
+      transition: transform 0.5s ease, box-shadow 0.5s ease; /* eklendi */
+    }
+
+    .product-card:hover img {
+      transform: scale(1.05) rotate(1deg); /* hafif büyüme ve dönme */
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2); /* hover gölge */
     }
 
     .product-card h2 {
