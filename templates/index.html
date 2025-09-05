@@ -9,6 +9,7 @@ body { font-family: Arial; background:#e0f5e9; margin:0; text-align:center; }
 header { background:aquamarine; padding:40px; color:#fff; }
 header h1 { margin:0; font-size:3rem; font-weight:bold; }
 header p { margin:10px 0 0; font-size:1.3rem; font-style:italic; }
+
 nav { margin:20px 0; }
 nav a { 
     margin:0 15px; 
@@ -20,10 +21,11 @@ nav a {
     transition: 0.3s;
 }
 nav a:hover {
-    background:#b2f2bb; /* hover arka planı */
-    transform: scale(1.1); /* hafif büyüme */
+    background:#b2f2bb;
+    transform: scale(1.1);
     color:#000;
 }
+
 .gallery {
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -32,6 +34,7 @@ nav a:hover {
     max-width:1000px;
     margin:0 auto;
 }
+
 .item {
     background:#fff;
     border-radius:12px;
@@ -56,6 +59,7 @@ nav a:hover {
     box-shadow: 0 12px 25px rgba(0,0,0,0.25);
     background: #b2f2bb;
 }
+
 .item img {
     width:100%;
     border-radius:12px;
@@ -64,6 +68,7 @@ nav a:hover {
 .item:hover img {
     transform: scale(1.05) rotate(-1deg);
 }
+
 .item p { margin:10px 0 5px; font-size:1.1rem; font-weight:bold; color:#444; }
 
 /* WhatsApp buton animasyonu */
@@ -80,7 +85,7 @@ nav a:hover {
 }
 .item a:hover {
     background:#1ebe5d; 
-    transform: scale(1.15) rotate(-2deg); /* zıplama ve hafif dönme */
+    transform: scale(1.15) rotate(-2deg);
     box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
 
@@ -90,3 +95,27 @@ nav a:hover {
     to { opacity:1; transform: translateY(0); }
 }
 </style>
+
+</head>
+<body>
+<header>
+<h1>HİTİT CUPS</h1>
+<p>Kaliteyi hisset , Markanı göster</p>
+</header>
+
+<nav>
+<a href="/shop">Mağaza</a> | <a href="/contact">İletişim</a>
+</nav>
+
+<div class="gallery">
+{% for product in products %}
+<div class="item">
+<img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
+<p>{{ product.name }} - {{ product.price }} TL</p>
+<a href="https://wa.me/905524981750?text=Merhaba,%20{{ product.name }}%20sipariş%20vermek%20istiyorum" target="_blank">WhatsApp</a>
+</div>
+{% endfor %}
+</div>
+
+</body>
+</html>
